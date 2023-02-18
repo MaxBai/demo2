@@ -12,10 +12,21 @@ repositories {
 	mavenCentral()
 }
 
+apply(plugin = "org.springframework.boot")
+apply(plugin = "io.spring.dependency-management")
+
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter")
+    implementation(platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES))
+
+	implementation("com.linecorp.bot:line-bot-spring-boot:6.0.0")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2")
+	implementation("org.hibernate:hibernate-validator:8.0.0.Final")
+	
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks.withType<Test> {
